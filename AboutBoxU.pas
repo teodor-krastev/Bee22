@@ -1,6 +1,6 @@
 (************************************************************************)
 (*  Bee22 - Particle Swarm Optimization framework     http://bee22.com  *)
-(*  developed by and copyright(c) Teodor Krastev 2015-2016              *)
+(*  developed by and copyright(c) Teodor Krastev 2015-2016         ***  *)
 (************************************************************************)
 unit AboutBoxU;
 
