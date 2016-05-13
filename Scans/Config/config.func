@@ -1,0 +1,69 @@
+[test.func]
+Style=sel
+Hint=Test function, covering variety of situations
+ReadOnly=0
+Default=0
+List=Parabola.Sphere,Griewank,Rosenbrock.Banana,Rastrigin,Tripod.dim.2,Ackley,Schwefel.7,Schwefel.1.2,Schwefel.2.22,Neumaier.3,G3,Network.optim,Schwefel,"2D.Goldstein-Price ",Schaffer.f6,Step,Schwefel.2.21,Lennard-Jones,"Gear.train ",Sine_sine.func,Perm.function,Compression.Spring,sine.Peak
+[dim]
+Style=int
+Hint=The actual current dimensionality
+ReadOnly=0
+Default=1
+Min=1
+Max=32
+[fix.dim]
+Style=int
+Hint=In case the test function requires some particular (fixed) dimensionality
+ReadOnly=1
+Default=-1
+Min=-1
+Max=33
+[noise.level]
+Style=dbl
+Hint=Noise level, as additive component. The effect depends on the test function.
+ReadOnly=0
+Default=10
+Min=0
+Max=4294967295
+[noise.linear]
+Style=dbl
+Hint=Proportional to the function value noise level, for very specific purposes.
+ReadOnly=0
+Default=0
+Min=0
+Max=4294967295
+[objective.0]
+Style=dbl
+Hint=First value of objective (solution) vector
+ReadOnly=0
+Default=0
+Min=-4294967295
+Max=4294967295
+[ss.min]
+Style=dbl
+Hint=Minimum of search space - common (for now) to all dims
+ReadOnly=0
+Default=-100
+Min=-4294967295
+Max=4294967295
+[ss.max]
+Style=dbl
+Hint=Maximum of search space - common (for now) to all dims
+ReadOnly=0
+Default=99
+Min=-4294967295
+Max=4294967295
+[sug.max.iters]
+Style=int
+Hint=Recommended max iterations number - specific to a test function
+ReadOnly=1
+Default=300
+Min=1
+Max=10000
+[sug.epsilon]
+Style=dbl
+Hint=Tolerance for hiiting the target (objective) vector - on.target prop
+ReadOnly=0
+Default=3E-5
+Min=0
+Max=4294967295

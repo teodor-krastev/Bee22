@@ -1,0 +1,5 @@
+pa_define(100,40,1, cylindrical, electrostatic)
+electrode(1) { fill { within { corner_box(0,0, 4,39) } } }
+electrode(2) { fill { within { corner_box(90,21, 16,39) } } }
+electrode(3) { fill { within { corner_box(96,0, 3,39) } } }
+  

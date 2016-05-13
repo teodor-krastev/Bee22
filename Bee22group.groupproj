@@ -1,0 +1,48 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{4281B3C9-F6F5-4543-9A15-CF30512D7439}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="Bee22.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="ClientBee22.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="Bee22">
+			<MSBuild Projects="Bee22.dproj"/>
+		</Target>
+		<Target Name="Bee22:Clean">
+			<MSBuild Projects="Bee22.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="Bee22:Make">
+			<MSBuild Projects="Bee22.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="ClientBee22">
+			<MSBuild Projects="ClientBee22.dproj"/>
+		</Target>
+		<Target Name="ClientBee22:Clean">
+			<MSBuild Projects="ClientBee22.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="ClientBee22:Make">
+			<MSBuild Projects="ClientBee22.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="Bee22;ClientBee22"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="Bee22:Clean;ClientBee22:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="Bee22:Make;ClientBee22:Make"/>
+		</Target>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
+	</Project>

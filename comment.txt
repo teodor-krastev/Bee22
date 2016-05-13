@@ -1,0 +1,103 @@
+Block component
+===============
+
+- the algo is modulized with blocks, very few operators are outside the blocks
+e.g. counters, termination condition (as result of block param)
+
+- the lowest level has no visual and no script, control only by parameters as
+properties
+
+- scripter has an access to block parameters and PSO_algo interface,
+the script calculations may include block-specific unit
+the script idea is offer test platform, after sufficient testing the code goes
+inside the block
+
+- the visual part uses MVC-like pattern, as controller provides script access to
+block parameters (one of which is the block script)
+
+- "steps over" allows you to update the visuals of the block not at every iteration
+but every 5th, or 20th... till 2000th of them.
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+Three levels of use of Bee22 PSO-framework - Control Center (TctrlCenter)
+
+1. Lower level is just to create pso and optionally some models and
+set the models only thru script and SetProp method of a model.
+Attaching visual observer(s) is possible, but not recommended (for better speed)
+and if there should be as minimal as possible. No block frames or main console
+are available at this level.
+The usual case for that usage level is for meta-pso (pso opimizing pso) or
+when development of particular optimization task reaches a point when no further
+properties adjustemnt nor intermediate results (chart or log) are needed.
+
+2. The middle level provides (on the top of lower level) main console access
+which along with some visual observers (typically). The console and the
+observers provide some on-fly control of the optimization, but it is to
+follow the overall situation (the big picture).
+
+3. The higher level provides full control. On block level - different parts of
+the optimization algorithm can be experimented with and tested. It is the slowest
+level but you have maximum control and information over the development.
+It is imaginable that at the final stage of develoment, some version of
+this level is still usable after reducing the number of visual block, loging
+number of observers to a minimum. That is of course the prerogative of the
+developer.
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+Observers
+
+Implementing InfObserver with only method VisualUpdate(sender: TObject)
+sender is normaly of TPSO type but could be any chunk of PSO. The reason it is
+passed here instead of in Create is future multi-thread implementation which
+requires to pass different threads (PSOs) to the same observer.
+
+The Init method is fluid from observer to observer and implement initiation of
+the observer taking appropriate arguments.
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+Chart - config
+
+common X-axis - iters or something
+separate Y-axes - check-list from int & dbl properties
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+Log - config
+
+text lines which include one $property$ per line, the property name will be
+replaced by its values + any text around + $i$ for iteration number.
+any line without $property$ in it is ignored
+using PropName - '@log' and the same SetProp function to write directly to
+the log (still under steps over rule), PropVal.str will have the message to log
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+Stop iterations - terminal conditions
+
+- number of iters reached
+
+- the sequence of n best values (SwarmBestEverPos) are within some limits
+(each var seprately) or the sigma of these values is below something
+
+that is improvement upon comparison of the last value and the one before that
+for suficient convergence
+
+- the aver particle speed get below some threshold
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Scans
+in case of two:
+- top one develops vertically (slow one); second one - horiz. (quick)
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-
+possibilities
+- finish proc after the optim is finished
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-
+scripter
+- scripter is reset before each iteration cicle (one optim)
+- common sections of all blocks are executed by order of their registration
+- global var for anywhere in scripter code - pso object
+-
+
+#############################################################################
+
+
+
