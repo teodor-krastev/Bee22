@@ -1,3 +1,5 @@
+# Bee22 - PSO framework
+
 Particle Swarm Optimization (PSO) open source framework
 
 Particle swarm optimization (PSO) is a very popular, nature-inspired, randomized, meta-heuristic class of algorithms for solving black box optimization problems. The main idea is to mimic the behaviour of natural swarms like, e.g., honeybee swarms, bird flocks and fish shoaling or aspects of human society, in order to find "promising" regions by sharing information and cooperating rather than competing against each other.
